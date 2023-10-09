@@ -1,0 +1,87 @@
+VERSION
+8
+
+COMMSETTINGS
+0
+COM4
+COM2
+115200
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+VERSATAP
+0
+
+CHANNELALIAS
+
+
+
+SEND
+0
+Data1
+?? ?? ?? 20 48 65 6C 6C 6F 57 6F 72 6C 64 0D 0A
+1
+.01
+
+SEND
+1
+get fw Version (16) Good String
+67 65 74 20 66 77 20 56 65 72 73 69 6F 6E 0D 0A
+1
+.01
+
+SEND
+2
+get fw Version (15) Bad String
+67 65 74 20 66 77 20 56 65 72 73 69 6F 0D 0A
+0
+.01
+
+SEND
+3
+***** Toggle LED *****
+
+0
+5
+
+SEND
+4
+set toggle led 500ms
+73 65 74 20 74 6F 67 67 6C 65 20 6C 65 64 0D 0A
+1
+.5
+
+SEND
+5
+set toggle led 100 ms
+73 65 74 20 74 6F 67 67 6C 65 20 6C 65 64 0D 0A
+1
+.1
+
+SEND
+6
+set toggle led 50 ms
+73 65 74 20 74 6F 67 67 6C 65 20 6C 65 64 0D 0A
+1
+.05
+
+SEND
+7
+start counter
+73 74 61 72 74 20 63 6F 75 6E 74 65 72 0D 0A
+0
+5
+
+SEND
+8
+stop counter
+73 74 6F 70 20 63 6F 75 6E 74 65 72 0D 0A
+0
+5
+

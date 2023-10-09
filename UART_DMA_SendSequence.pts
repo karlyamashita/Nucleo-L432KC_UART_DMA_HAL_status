@@ -1,0 +1,18 @@
+DL_SCRIPTVERSION
+1
+57769
+
+DL.StartCommunication
+
+DL.ClearCommWindows  
+
+DL.AddComment "Sending to STM32"
+
+For i = 1 To 200
+
+	DL.SendSequence "Data1", i     
+	DL.Pause 10
+
+Next
+
+DL.StopCommunication
