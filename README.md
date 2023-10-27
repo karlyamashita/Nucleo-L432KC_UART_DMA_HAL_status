@@ -1,7 +1,7 @@
 # Nucleo-L432KC_UART_DMA_HAL_status
 
 This Project was designed on a Nucleo-L432KC but the code can be port to any STM32 device/development board.\
-Check out the [YouTube Tutorial](https://youtube.com/) :film_strip:\
+~~Check out the [YouTube Tutorial](https://youtube.com/) :film_strip:~~\
 Be sure to subscribe and like the video. Any comments will be appreciated :grinning:
 
 ## This project demonstrates how to 
