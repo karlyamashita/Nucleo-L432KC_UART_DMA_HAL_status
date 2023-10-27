@@ -32,7 +32,7 @@ typedef struct
 		RING_BUFF_STRUCT ptr;
 		uint32_t queueSize; // just a helper so that you don't have to remember the define name. Assign size when creating variable.
 
-		bool errorFlag;
+		HAL_StatusTypeDef HAL_Status;
 	}rx;
 	struct
 	{

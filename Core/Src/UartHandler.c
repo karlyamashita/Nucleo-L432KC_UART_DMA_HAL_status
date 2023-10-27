@@ -14,9 +14,9 @@
 // if error flag then try to enable interrupt again
 void UART_CheckEnErrorFlag(UartBuffer_t *msg)
 {
-	if(msg->rx.errorFlag)
+	if(msg->rx.HAL_Status != HAL_OK)
 	{
-		msg->rx.errorFlag = false;
+		msg->rx.HAL_Status = HAL_OK;
 		UART_EnableUART_DMA(msg);
 	}
 }
@@ -24,10 +24,7 @@ void UART_CheckEnErrorFlag(UartBuffer_t *msg)
 // enable UART DMA interrupt
 void UART_EnableUART_DMA(UartBuffer_t *msg)
 {
-	if(HAL_UARTEx_ReceiveToIdle_DMA(msg->huart, msg->rx.queue[msg->rx.ptr.index_IN].data, DMA_FULL_CALLBACK_SIZE) != HAL_OK)
-	{
-		msg->rx.errorFlag = true;
-	}
+	msg->rx.HAL_Status = HAL_UARTEx_ReceiveToIdle_DMA(msg->huart, msg->rx.queue[msg->rx.ptr.index_IN].data, DMA_FULL_CALLBACK_SIZE);
 }
 
 
