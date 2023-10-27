@@ -25,11 +25,11 @@ For this project I'm using the DMA. But this also applies for using interrupts l
 + HAL_UARTEx_ReceiveToIdle_IT
 
 ### What usually happens when transmitting 
-+ The user has multiple data packets to send and by calling **HAL_UART_Transmit_DMA** he has the 1st transmit still being processed.
++ The user has multiple data packets to send and by calling **HAL_UART_Transmit_DMA** he has the 1st transmit in progress.
 + Then the user calls **HAL_UART_Transmit_DMA** again with the 2nd packet, but because HAL driver is still transmitting the 1st packet, HAL status returns HAL_BUSY.
 + Because the user doesn't check the HAL status, he doesn't know that the 2nd packet was not sent and is lost.
 + Until HAL status returns HAL_OK, then the user could have 10's of messages that are lost.
-+ The YouTube video will show how much data is lost.
++ ~~The YouTube video will show how much data is lost.~~
 
 ### What usually happens when receiving
 + The user calls **HAL_UARTEx_ReceiveToIdle_DMA** to enable interrupts.
@@ -40,9 +40,9 @@ For this project I'm using the DMA. But this also applies for using interrupts l
 + When receiving packets of data, there will be an idle time before the next packet is received. The DMA will detect this idle time and interrupt. In **HAL_UARTEx_RxEventCallback** you can increment your buffer pointer.
   - There is no need to copy data from the original array to another array in hopes that new received data doesn't overwrite your original array before you can process the data.
   - Because a ring buffer is used, the data is already saved to it by the DMA. You just increment the ring buffer pointer so new data is saved to the next index location while your new data is still intact for parsing. Simple right? 
-+ When using **HAL_UART_Receive_DMA** you have to know the size of data being received. If the data packet is of different lengths, this could lead to the DMA buffer being out of sync. 
++ When using **HAL_UART_Receive_DMA** you have to know the size of data being received. If the data packet is of different lengths, this could lead to the DMA buffer being out of sync. Also the user will need to figure out when the packet of data starts and when it ends. It could be the use of a start byte, length byte and/or delimiter which requires more coding to extract/save the packet. 
 
 ### ST's examples
 + If HAL status is not HAL_OK, they call **Error_Handler()**. This function does nothing but loop forever. That's a piss poor job of showing how to deal with an error. 
-+ ST should have better explained that the HAL driver is **busy** and to try again to either receive or transmit.
++ ST could have done better by explaining that the HAL driver is **busy**. They should show how to try again to either receive or transmit again.
 
